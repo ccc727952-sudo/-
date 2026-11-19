@@ -1,0 +1,36 @@
+# ---- Keil MDK 编译输出 ----
+Obj/
+Listings/
+Output/
+*.o
+*.d
+*.crf
+*.dep
+*.lnp
+*.lst
+*.axf
+*.hex
+*.bin
+*.map
+*.sct
+*.htm
+*.build_log.htm
+
+# ---- Keil 用户界面布局(每人不同,不要提交) ----
+*.uvguix.*
+*.scvd.user
+
+# ---- 调试器个人配置 ----
+DebugConfig/
+
+# ---- VS Code 插件日志 ----
+.vscode/*.log
+.vscode/*.log.lock
+.vscode/keil-assistant.log
+.vscode/uv4.log*
+
+# ---- 系统/编辑器临时文件 ----
+Thumbs.db
+Desktop.ini
+.DS_Store
+*~
