@@ -7,7 +7,7 @@
 #include "adc_temp.h"
 #include "lcd.h"
 #include "image.h"
-
+#include "jkey.h"
 
 int fputc(int ch, FILE *f){
 	// send_byte((uint8_t)ch);
@@ -23,14 +23,16 @@ int main(void)
 	key_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
 	USART1_Init(115200);
-	printf("hello world\n");
+	printf("hello world1\n");
 	
 	lcd_init();				//LCD初始化，内部会先清屏为白色
-	lcd_show_line(RED);		//在y=10处画一条红线
+	//lcd_show_line(RED);		//在y=10处画一条红线
 	lcd_show_picture(gImage_image2);	//显示图片
-
+	jkey_init();
 	while(1){
-
-	}
-		
+		u8 key = jkey_scan();
+		if(key!=0){
+			printf("key = %d\n",key);
+		}
+	}	
 }
