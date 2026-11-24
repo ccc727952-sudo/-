@@ -437,6 +437,16 @@
               <FileType>1</FileType>
               <FilePath>.\App\jkey.c</FilePath>
             </File>
+            <File>
+              <FileName>24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\24cxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\iic.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -506,6 +516,11 @@
               <FileName>stm32f10x_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</FilePath>
             </File>
           </Files>
         </Group>

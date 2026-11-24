@@ -175,7 +175,7 @@ void lcd_init(void)
     lcd_clear(WHITE);
 }
 
-void lcd_set_window(uint16_t xstar, uint16_t ystar, uint16_t xend, uint16_t yend)
+void lcd_set_window(uint16_t xstar, uint16_t ystar, uint16_t xend, uint16_t yend)//设置显示窗口
 {
     lcd_write_cmd(0x2A);
     lcd_write_data16(xstar);
@@ -188,13 +188,13 @@ void lcd_set_window(uint16_t xstar, uint16_t ystar, uint16_t xend, uint16_t yend
     lcd_write_cmd(0x2C);
 }
 
-void lcd_show_dot(uint16_t color)
+void lcd_show_dot(uint16_t color)//显示一个点
 {
     lcd_set_window(100, 100, 100, 100);
     lcd_write_data16(color);
 }
 
-void lcd_show_line(uint16_t color)
+void lcd_show_line(uint16_t color)//显示一条线
 {
     uint16_t i;
     uint8_t hi = color >> 8;
@@ -209,7 +209,7 @@ void lcd_show_line(uint16_t color)
     lcd_write_datan(lcd_buf, LCD_WIDTH * 2);    /* 240像素 x 2字节 */
 }
 
-void lcd_clear(uint16_t color)
+void lcd_clear(uint16_t color)//清除屏幕
 {
     uint16_t i;
     uint16_t row;
@@ -230,7 +230,7 @@ void lcd_clear(uint16_t color)
     }
 }
 
-void lcd_show_picture(const uint8_t *img)
+void lcd_show_picture(const uint8_t *img)//显示一张图片
 {
     uint32_t total = LCD_WIDTH * LCD_HEIGHT * 2;
     uint32_t offset;
