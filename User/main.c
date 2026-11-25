@@ -136,9 +136,9 @@ int main(void)
 	systick_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
 	usart1_init(115200);
-	exti_init();//初始化外部中断
 	led_init();
 	Servo_PWM_Init();//初始化舵机电机
+	exti_init();//初始化外部中断（放在外设初始化之后，避免中断提前触发）
 	// 注册串口接收回调函数
   	USART1_RegisterRxCallback(ServoAngleCallback);
 	printf("hello world5,舵机电机初始化完成\n");
