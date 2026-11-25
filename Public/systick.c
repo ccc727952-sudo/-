@@ -14,7 +14,7 @@ void systick_init(){
 
 
 //延迟多少us
-void delay_us(u16 us){
+void delay_us(u32 us){
 	//假设调用处  delay_us(1000);
 	//计算1000us对应的嘀嗒次数
 	SysTick->LOAD =fac_us*us;

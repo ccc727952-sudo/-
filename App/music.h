@@ -55,7 +55,7 @@
 #define p 600	//p为一段时间
 
 
-#ifdef MUSIC_C
+#ifndef MUSIC_C
 uc16 music[516]={
  
     m7,p/4,
@@ -337,9 +337,6 @@ uc16 music[516]={
 	h1,p
 	
 };
-
-
-
 
 #else
 extern uc16 music[516];

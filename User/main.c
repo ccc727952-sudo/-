@@ -179,12 +179,13 @@ int main(void)
 #endif
 
 
-#if 1//lcd测试+直流电机测试
+#if 1
 int main(void)
 {
 	systick_init();
 	key_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
+	beep_init();//蜂鸣器初始化
 	usart1_init(115200);
 	printf("hello world1\n");
 	lcd_init();				//LCD初始化，内部会先清屏为白色
@@ -192,7 +193,7 @@ int main(void)
 	u8 key;
 	uint16_t N=258;
 	while(1){
-		key = jkey_scan();
+		key = key_scan(1);
 		if(key == 1)
 	    PlayMusic(N,music);
 

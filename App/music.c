@@ -20,17 +20,17 @@ void PlayMusic(int num,uc16 music[])
  
 			beep_on();
  
-			Delay_us(465000/music[i*2]);
+			delay_us(465000/music[i*2]);
  
 			beep_off();
  
-			Delay_us(500000/music[i*2]);
+			delay_us(500000/music[i*2]);
  
 		}
-		Delay_ms(50);
-		if(music[i] == 0) Delay_ms(150);
+		delay_ms(50);
+		if(music[i] == 0) delay_ms(150);
 		KeyNum=key_scan(1);
-		if(KeyNum == 1)
+		if(KeyNum == 2)
 		{	
 			beep_off();
 			break;

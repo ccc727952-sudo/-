@@ -8,7 +8,7 @@
 void systick_init();
 
 //延迟多少us
-void delay_us(u16 us);
+void delay_us(u32 us);
 //延迟多少ms
 void delay_ms(u16 ms);
 
