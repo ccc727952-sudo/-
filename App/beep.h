@@ -9,6 +9,8 @@
 #define BEEP PBout(8)
 
 void beep_init();
+void beep_on();
+void beep_off();
 
 
 #endif

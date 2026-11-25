@@ -10,6 +10,15 @@ void beep_init(){
 	initDef.GPIO_Pin=BEEP_GPIO_Pin;
 	initDef.GPIO_Speed=GPIO_Speed_50MHz;	
 	GPIO_Init(BEEP_GPIO_PORT,&initDef);
+	//3.初始化蜂鸣器
+	GPIO_ResetBits(BEEP_GPIO_PORT,BEEP_GPIO_Pin);//蜂鸣器默认关闭
 }
 
+void beep_on(void){//蜂鸣器打开
+	GPIO_SetBits(BEEP_GPIO_PORT,BEEP_GPIO_Pin);
+}
+
+void beep_off(void){//蜂鸣器关闭
+	GPIO_ResetBits(BEEP_GPIO_PORT,BEEP_GPIO_Pin);
+}
 

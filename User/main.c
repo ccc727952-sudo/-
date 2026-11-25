@@ -13,9 +13,39 @@
 #include "led.h"
 #include "servoMotor.h"
 #include "exti.h"
+#include "music.h"
+#include "beep.h"
+
+#if 0//蜂鸣器测试
+int main(void)
+{
+	systick_init();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
+	usart1_init(115200);
+	key_init();
+	printf("hello world6\n");
+	beep_init();
+	while(1){
+		u8 key = key_scan(1);
+		if(key!=0){
+			switch(key){
+				case 1:
+					beep_on();
+					break;
+				case 2:
+					beep_off();
+					break;
+				default:
+					break;
+			}
+		}
+	}
+}
+#endif
 
 
-#if 0//lcd测试
+
+#if 0//lcd测试+直流电机测试
 int main(void)
 {
 	systick_init();
@@ -28,7 +58,7 @@ int main(void)
 	motor_init();
 	DRV8833_Enable();
 	lcd_show_line(RED);		//在y=10处画一条红线
-	lcd_show_picture(gImage_image2);	//显示图片
+	lcd_show_picture(gImage_ima);	//显示图片
 	jkey_init();
 	while(1){
 		u8 key = jkey_scan();
@@ -63,7 +93,7 @@ int main(void)
 	ADC_init();
 	printf("hello world2\n");
 	while(1){
-		u16 adc_value = get_adc_value(ADC_Channel_TempSensor,10);//读取温度传感器值
+		u16 adc_value = get_adc_value(ADC_Channel_TempSensor,10);//读取温度传感器值，10次取平均值
 		float vsense = (float)adc_value * 3.3f / 4096.0f;//将ADC值转换为电压值
 		int t10 = (int)(((1.43f - vsense) / 0.0043f + 25.0f) * 10.0f);//将电压值转换为温度值
 		if(t10 < 0){//温度值为负数时，需要取绝对值
@@ -108,7 +138,7 @@ int main(void)
 }
 #endif
 
-#if 1//servoMotor测试
+#if 0//servoMotor测试
 void ServoAngleCallback(u16 len, u16 *buf) {
     u8 angle = 0;
     u8 i;
@@ -145,5 +175,27 @@ int main(void)
 	while(1){
 
 	}
+}
+#endif
+
+
+#if 1//lcd测试+直流电机测试
+int main(void)
+{
+	systick_init();
+	key_init();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
+	usart1_init(115200);
+	printf("hello world1\n");
+	lcd_init();				//LCD初始化，内部会先清屏为白色
+	lcd_show_picture(gImage_ima);	//显示图片
+	u8 key;
+	uint16_t N=258;
+	while(1){
+		key = jkey_scan();
+		if(key == 1)
+	    PlayMusic(N,music);
+
+	}	
 }
 #endif

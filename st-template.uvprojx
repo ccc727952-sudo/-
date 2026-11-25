@@ -438,14 +438,14 @@
               <FilePath>.\App\jkey.c</FilePath>
             </File>
             <File>
-              <FileName>24cxx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\App\24cxx.c</FilePath>
-            </File>
-            <File>
               <FileName>iic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\App\iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\24cxx.c</FilePath>
             </File>
             <File>
               <FileName>servoMotor.c</FileName>
@@ -456,6 +456,11 @@
               <FileName>exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\App\exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>music.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\music.c</FilePath>
             </File>
           </Files>
         </Group>
