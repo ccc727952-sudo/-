@@ -11,15 +11,9 @@
 #include "motor.h"
 #include "24cxx.h"
 #include "led.h"
+#include "servoMotor.h"
+#include "exti.h"
 
-
-
-int fputc(int ch, FILE *f){
-	// send_byte((uint8_t)ch);
-	USART_SendData(USART1, (uint8_t)ch);
-	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-	return ch;
-}
 
 #if 0//lcd测试
 int main(void)
@@ -27,7 +21,7 @@ int main(void)
 	systick_init();
 	key_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
-	USART1_Init(115200);
+	usart1_init(115200);
 	printf("hello world1\n");
 	
 	lcd_init();				//LCD初始化，内部会先清屏为白色
@@ -60,12 +54,12 @@ int main(void)
 }
 #endif
 
-#if 0
+#if 0//adc测试
 int main(void)
 {
 	systick_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
-	USART1_Init(115200);
+	usart1_init(115200);
 	ADC_init();
 	printf("hello world2\n");
 	while(1){
@@ -84,12 +78,12 @@ int main(void)
 #endif
 
 
-#if 1
+#if 0//24CXX测试
 int main(void)
 {
 	systick_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
-	USART1_Init(115200);
+	usart1_init(115200);
 	AT24CXX_Init();//初始化24CXX
 	led_init();//初始化LED
 	#if 0
@@ -111,5 +105,45 @@ int main(void)
 		printf("hello world4,24CXX写入完成 0x00->data+1\n",data+1);
 	#endif
 	while(1){}
+}
+#endif
+
+#if 1//servoMotor测试
+void ServoAngleCallback(u16 len, u16 *buf) {
+    u8 angle = 0;
+    u8 i;
+
+    // 将接收到的字符转换为角度值
+    // 假设发送格式为纯数字，如 "90\r\n"
+    for(i = 0; i < len; i++) {
+        if(buf[i] >= '0' && buf[i] <= '9') {
+            angle = angle * 10 + (buf[i] - '0');
+        }
+    }
+
+    // 限制角度范围 0-180
+    if(angle > 180) angle = 180;
+
+    // 控制舵机转动到指定角度
+    Servo_SetAngle(angle);
+
+    // 可选：通过串口返回确认信息
+    printf("Servo angle set to: %d\r\n", angle);
+
+}
+int main(void)
+{
+	systick_init();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
+	usart1_init(115200);
+	exti_init();//初始化外部中断
+	led_init();
+	Servo_PWM_Init();//初始化舵机电机
+	// 注册串口接收回调函数
+  	USART1_RegisterRxCallback(ServoAngleCallback);
+	printf("hello world5,舵机电机初始化完成\n");
+	while(1){
+
+	}
 }
 #endif
