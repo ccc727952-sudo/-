@@ -179,7 +179,7 @@ int main(void)
 #endif
 
 
-#if 0//“Ù¿÷≤•∑≈+ƒÃ≈©
+#if 1//“Ù¿÷≤•∑≈
 int main(void)
 {
 	systick_init();
@@ -199,9 +199,11 @@ int main(void)
 
 	}	
 }
+
+
 #endif
 
-#if 1
+#if 0
 int main(void)
 {
 	systick_init();
