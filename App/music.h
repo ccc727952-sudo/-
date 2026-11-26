@@ -338,11 +338,23 @@ uc16 music[516]={
 	
 };
 
+/* Da Bei Zhou: chant style, slow pentatonic contour */
+uc16 music2[40]={
+	m1,p/2, m1,p/2, l6,p/2, l5,p/2,
+	l5,p/2, l6,p/2, m1,p/2, m1,p/2,
+	m2,p/2, m1,p/2, l6,p/2, l5,p/2,
+	l5,p/1,
+	m1,p/2, m2,p/2, m3,p/2, m2,p/2,
+	m1,p/2, l6,p/2, l5,p/1
+};
+
 #else
 extern uc16 music[516];
+extern uc16 music2[40];
 #endif
 
 void PlayMusic(int num,uc16 music[]);
+void PlayRhythm(int num,const unsigned short *tab);
 
 
 

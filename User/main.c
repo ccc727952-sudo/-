@@ -179,6 +179,28 @@ int main(void)
 #endif
 
 
+#if 0//音乐播放+奶农
+int main(void)
+{
+	systick_init();
+	key_init();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//2:2位优先级，6位子优先级
+	beep_init();//蜂鸣器初始化
+	usart1_init(115200);
+	printf("hello world1\n");
+	lcd_init();				//LCD初始化，内部会先清屏为白色
+	lcd_show_picture(gImage_ima);	//显示图片
+	u8 key;
+	uint16_t N=258;
+	while(1){
+		key = key_scan(1);
+		if(key == 1)
+	    PlayMusic(N,music);
+
+	}	
+}
+#endif
+
 #if 1
 int main(void)
 {
@@ -196,6 +218,8 @@ int main(void)
 		key = key_scan(1);
 		if(key == 1)
 	    PlayMusic(N,music);
+		if(key == 3)
+	    PlayMusic(20,music2);
 
 	}	
 }
